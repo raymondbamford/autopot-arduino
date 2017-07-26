@@ -37,7 +37,7 @@
 //##################################################################################
 
 // GENERAL
-#define WAIT 10000
+#define WAIT 5 // wait is set to 5 mins (300 * 1000ms)
 #define pot_id 2
 float Vin= 5;
 int i;
@@ -88,6 +88,10 @@ float Vout;
 float Lux;
 float R2 = 10.0; // 10 Kohms
 
+// SERIAL INPUT FOR LIGHTING AND LOOP DELAY
+long delayCounter = 0;
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 // SETUP
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -97,8 +101,6 @@ void setup() {
   Serial.begin(9600);
   // Serial.println("STARTING PROGRAM. (Ignore first set of data points)");
   // Serial.println("");
-  while(Serial.available() == 0){} // wait for some input on the serial connection
-  Serial.read(); // clear the input buffer
   
   // CONDUCTIVITY
   pinMode(ECPin,INPUT);
@@ -121,6 +123,8 @@ void setup() {
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 void loop() {
+  
+  
   // CONDUCTIVITY AND WATER PROBE
   getEC(); // Don't call this more than once every five seconds or you will polarise the water
 
@@ -135,12 +139,14 @@ void loop() {
   
   // LIGHT
   getLight();
-
+  
   // PRINT ALL SENSORS
-  PrintReadings();
+  PrintReadings(); 
+  
+  // TURN ON PUMP
+  //write code here for pump
 
-  while(Serial.available()==0){} // wait for input from serial connection
-  Serial.read(); // clear input buffer  
+  delay(WAIT*1000);
 }
 
 
@@ -334,6 +340,12 @@ void PrintReadings() {
   // LIGHT
   //Serial.print("LIGHT: ");
   Serial.print(Lux);
+  Serial.print("\n");
   //Serial.print("");
-
 }
+
+// UPDATE THE LIGHT IN THE SERIAL EVENT FUNCTION
+void serialEvent(){
+  //code to update light
+}
+
