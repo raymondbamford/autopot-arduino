@@ -38,7 +38,7 @@
 
 // GENERAL
 #define WAIT 7 // wait is set to 5 mins (300 * 1000ms)
-#define pot_id 2
+#define pot_id 11
 float Vin= 5;
 int i;
 
