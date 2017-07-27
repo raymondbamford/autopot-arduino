@@ -340,7 +340,6 @@ void PrintReadings() {
   // LIGHT
   //Serial.print("LIGHT: ");
   Serial.print(Lux);
-  Serial.print("\n");
   //Serial.print("");
 }
 
