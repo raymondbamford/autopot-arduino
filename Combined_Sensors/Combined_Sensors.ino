@@ -340,7 +340,7 @@ void PrintReadings() {
   // LIGHT
   //Serial.print("LIGHT: ");
   Serial.print(Lux);
-  //Serial.print("");
+  Serial.print(";");
 }
 
 // UPDATE THE LIGHT IN THE SERIAL EVENT FUNCTION
