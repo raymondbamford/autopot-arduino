@@ -145,7 +145,7 @@ void setup() {
 
   // RESERVOIR MISTER
   myservo.attach(9);  // attaches the servo on pin 9 to the servo object
-  myservo.write(pos);
+  // Initializes moter by turning it on and off
 
   // LAMP
   pinMode(lamp, OUTPUT);
@@ -364,12 +364,12 @@ void getLight() {
 // LAMP
 void getLamp() {
   getLight();
-  if(Lux < 10) {
+  if(Lux < 20) {
     digitalWrite(lamp, HIGH);
     //delay(WAIT_LAMP);
     //digitalWrite(lamp, LOW);
   }
-  else if(Lux > 100) {
+  else if(Lux > 40) {
     digitalWrite(lamp, LOW);
   }
 }
