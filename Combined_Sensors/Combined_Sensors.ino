@@ -5,7 +5,7 @@
  *  
  *  Combined code for the following sensors:
  *  1) Conductivity                          - Pins A0, A1, A4
- *  2) Temperature Probe (for water)         - Pin 2
+ *  2) Temperature Probe (for water)         - Pin 4
  *  3) Sonar (for water level)               - Pins 12, 13
  *  4) Liquid Level (for nutrient level)     - Pin 5
  *  5) Temperature Humidity (for air)        - Pin 7
@@ -37,7 +37,7 @@
 //##################################################################################
 
 // GENERAL
-#define WAIT 5 // wait is set to 5 mins (300 * 1000ms)
+#define WAIT 7 // wait is set to 5 mins (300 * 1000ms)
 #define pot_id 2
 float Vin= 5;
 int i;
@@ -50,8 +50,8 @@ int R1 = 560; // First resistor in voltage divider - 560 Ohms
 int Ra = 25; //Resistance of powering Pins - 25 Ohms
 //float PPMconversion=0.7; // Convert from EC to PPM
 float temperatureCoef = 0.019; // temperature compensation. This changes depending on what chemical we are measuring
-//float K = 1.15; // Cell constant. Found by running the calibration code
-float K = 2.00; // For some reason this value changed during testing
+//float K = 2.00; // For some reason this value changed during testing
+float K = 1.035; // For some reason this value changed during testing
 float Vdrop = 0; // Voltage drop across water
 float EC = 0; // EC for water
 float EC25 = 0; // EC for water at 25 degC
@@ -61,7 +61,7 @@ float con_raw = 0; // Raw data from sensor
 float con_buffer = 0; // Store sum of raw data to find average
 
 // TEMPERATURE PROBE (DS18S20)
-int Temp_probe_pin = 2; // Pins
+int Temp_probe_pin = 4; // Pins
 OneWire ds(Temp_probe_pin);
 float temperature=10;
 
@@ -132,7 +132,7 @@ void loop() {
   getSonar();
 
   // LIQUID LEVEL
-  getLiquidLevel(); // 1 means water above, 0 means water below
+  //getLiquidLevel(); // 1 means water above, 0 means water below
 
   // TEMPERATURE AND HUMIDITY
   getTempHum(); // Will output -100 for both values if there is an error
@@ -326,8 +326,8 @@ void PrintReadings() {
 
   // LIQUID LEVEL
   //Serial.print("LIQUID LEVEL: ");
-  Serial.print(Liquid_level,DEC);
-  Serial.print(",");
+  //Serial.print(Liquid_level,DEC);
+  //Serial.print(",");
 
   // TEMPERATURE AND HUMIDITY
   //Serial.print("AIR TEMPERATURE: ");
