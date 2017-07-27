@@ -409,5 +409,5 @@ void PrintReadings() {
   // PHOTORESISTOR
   //Serial.print("PHOTORESISTOR: ");
   Serial.print(Lux);
-  Serial.print("\n");
+  Serial.print(";");
 }
