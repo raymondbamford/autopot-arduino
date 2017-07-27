@@ -38,7 +38,7 @@
 
 // GENERAL
 #define WAIT 7 // wait is set to 5 mins (300 * 1000ms)
-#define pot_id 2
+#define pot_id 11
 float Vin= 5;
 int i;
 
@@ -340,8 +340,7 @@ void PrintReadings() {
   // LIGHT
   //Serial.print("LIGHT: ");
   Serial.print(Lux);
-  Serial.print("\n");
-  //Serial.print("");
+  Serial.print(";");
 }
 
 // UPDATE THE LIGHT IN THE SERIAL EVENT FUNCTION
