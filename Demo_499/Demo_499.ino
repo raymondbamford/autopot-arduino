@@ -175,15 +175,18 @@ void loop() {
 
   // Loop to poll buttons and lamp during poll
   for(int i = 0; i < (WAIT_MAIN)/100; i++) {
-    
+
+    //Serial.println("In button wait loop");
     // PERISTALTIC PUMP
     if(digitalRead(button1Pin) == LOW) {
       peristaltic();
+      //Serial.println("button1");
     }
 
     // RESERVOIR MISTER
     if(digitalRead(button2Pin) == LOW) {
       mister();
+      //Serial.println("button 2p");
     }
     
     // LAMP
